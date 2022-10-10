@@ -1,0 +1,75 @@
+*{
+    font-family: 'fonte';
+}
+
+@font-face{
+	font-family: "fonte";
+	src: url('TexasRangerBold-waen.otf');
+}
+
+#body-sobre {
+    background-color: black;
+}
+
+#jumbo-sobre {
+    background: #6b4417;
+    background-image: url('fundo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 1000px;
+    width: 100%;
+}
+
+#nome-procurado {
+    margin-top: 240px;
+    margin-left: 350px;
+    color: rgb(224, 84, 49);
+}
+
+#h1-nome-procurado{
+    font-size: 60px;
+}
+
+#procurado{
+    margin: auto 400px;
+}
+
+#img-card-sobre {
+    height: 350px;
+    width: 400px;
+}
+
+#descricao {
+    margin-top: 15px;
+    text-align: justify;
+}
+
+#recompensa {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#h1-recompensa{
+    font-size: 80px;
+    text-align: center;
+    color: rgb(224, 84, 49);
+}
+
+#footer {
+    color: #6b4417;   
+}
+
+#h1-div-titulo{
+    text-align: center;
+    font-size: 100px;
+}
+
+#h1-div-titulo:hover {
+    text-align: center;
+    font-size: 100px;
+    color: rgb(224, 84, 49);
+}
+
+#titulo-navbar:hover{
+    color: rgb(224, 84, 49);
+}
