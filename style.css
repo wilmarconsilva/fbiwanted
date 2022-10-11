@@ -4,10 +4,10 @@
 
 @font-face{
 	font-family: "fonte";
-	src: url('texasrangerbold.ttf');
+	src: url('TexasRangerBold-waen.otf');
 }
 
-#body-sobre {
+#body {
     background-color: black;
 }
 
@@ -62,6 +62,7 @@
 #h1-div-titulo{
     text-align: center;
     font-size: 100px;
+    color: white;
 }
 
 #h1-div-titulo:hover {
@@ -74,6 +75,18 @@
     color: rgb(224, 84, 49);
 }
 
+#img-card-index {
+    width: 280px;
+    height: 400px;
+}
+
+#nome {
+    margin-top: 15px;
+}
+
+#card-index {
+    margin-bottom: 30px;
+}
 
 
 
