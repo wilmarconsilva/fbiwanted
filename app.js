@@ -1,19 +1,14 @@
-function req_json (page)
+function req_json_wanted (page)
 {
+    console.log(page);
+
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", 'https://api.fbi.gov/@wanted?pageSize=50&page='+page, false);
     xhttp.send();
     var retorno = JSON.parse(xhttp.responseText);
+    const procurados = retorno.items;
 
-    return retorno.items;
-}
-
-function get_procurados() {
-
-    var page = 1;
-
-    var procurados = req_json(page);
-    
+    //mantém somente criminosos no objeto
     for (var i in procurados)
     {
         if(procurados[i].reward_text == null || procurados[i].sex == null)
@@ -22,25 +17,64 @@ function get_procurados() {
         }
     }
 
-    if( (Object.keys(procurados).length) < 16 )
+    return procurados;
+}
+
+function get_procurados() {
+
+    var page = 1;
+
+    var procurados = req_json_wanted(page);
+
+    //requisita uma nova página caso não alcance 12 criminosos na requisição
+    while( (Object.keys(procurados).length) < 12 )
     {
         page+=1;
-        procurados.concat(req_json(page));
+
+        var aux = procurados;
+        var aux2 = req_json_wanted(page);
+        procurados = aux.concat(aux2);
     }
 
     return procurados;
 
 }
 
+function req_json_wanted_person (uid)
+{
+    console.log(uid);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", 'https://api.fbi.gov/@wanted-person/'+uid, false);
+    xhttp.send();
+    var retorno = JSON.parse(xhttp.responseText);
+    const procurado = retorno.items;
+
+    console.log(procurado);
+}
+
+function sobre (uid)
+{
+    const procurado = req_json_wanted_person(uid);
+
+    var img = document.getElementById("img-card-sobre");
+    img.src = procurado.images[0].thumb;
+
+    document.getElementById("h1-nome-procurado").innerHTML = procurado.title;
+    document.getElementById("descricao").innerHTML = procurado.description;
+    document.getElementById("h1-recompensa").innerHTML = procurado.reward_text;
+}
+
+//main
 const procurados = get_procurados();
 
 console.log(procurados);
 
-quantidade = (Object.keys(procurados).length) / 4;
-var limite1 = quantidade;
-var limite2 = quantidade * 2;
-var limite3 = quantidade * 3;
-var limite4 = quantidade * 4;
+const quantidade = (Object.keys(procurados).length) / 4;
+const limite1 = quantidade;
+const limite2 = quantidade * 2;
+const limite3 = quantidade * 3;
+const limite4 = quantidade * 4;
 
 var col1 = document.getElementById('col1');
 var col2 = document.getElementById('col2');
@@ -52,6 +86,7 @@ col2.innerHTML = '';
 col3.innerHTML = '';
 col4.innerHTML = '';
 
+//cria os cards
 for (var i = 0; i < limite1; i++) {
 
         var card = document.createElement("div");
@@ -69,7 +104,12 @@ for (var i = 0; i < limite1; i++) {
 
         //img
         var link_img = document.createElement("a");
-        link_img.href = "#topo";
+        link_img.href = "./sobre.html";
+        link_img.id = procurados.uid;
+        link_img.onclick = function (e)
+        {
+            sobre(this.id);
+        }
 
         var img = document.createElement("img");
         img.src = procurados[i].images[0].thumb;
@@ -156,7 +196,7 @@ for (var i = limite2; i < limite3; i++) {
 
         //img
         var link_img = document.createElement("a");
-        link_img.href = "#topo";
+        link_img.href = "sobre.html";
 
         var img = document.createElement("img");
         img.src = procurados[i].images[0].thumb;
@@ -224,5 +264,4 @@ for (var i = limite3; i < limite4; i++) {
 
         col4.appendChild(card);
 }
-
 
