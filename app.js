@@ -112,7 +112,7 @@ for (var i = 0; i < limite1; i++) {
         }
 
         var img = document.createElement("img");
-        img.src = procurados[i].images[0].thumb;
+        img.src = procurados[i].images[0].original;
 
         link_img.appendChild(img);
         card.appendChild(link_img);
@@ -153,10 +153,15 @@ for (var i = limite1; i < limite2; i++) {
 
         //img
         var link_img = document.createElement("a");
-        link_img.href = "#topo";
+        link_img.href = "./sobre.html";
+        link_img.id = procurados.uid;
+        link_img.onclick = function (e)
+        {
+            sobre(this.id);
+        }
 
         var img = document.createElement("img");
-        img.src = procurados[i].images[0].thumb;
+        img.src = procurados[i].images[0].original;
 
         link_img.appendChild(img);
         card.appendChild(link_img);
@@ -196,10 +201,15 @@ for (var i = limite2; i < limite3; i++) {
 
         //img
         var link_img = document.createElement("a");
-        link_img.href = "sobre.html";
+        link_img.href = "./sobre.html";
+        link_img.id = procurados.uid;
+        link_img.onclick = function (e)
+        {
+            sobre(this.id);
+        }
 
         var img = document.createElement("img");
-        img.src = procurados[i].images[0].thumb;
+        img.src = procurados[i].images[0].original;
 
         link_img.appendChild(img);
         card.appendChild(link_img);
@@ -239,10 +249,15 @@ for (var i = limite3; i < limite4; i++) {
 
         //img
         var link_img = document.createElement("a");
-        link_img.href = "#topo";
+        link_img.href = "./sobre.html";
+        link_img.id = procurados.uid;
+        link_img.onclick = function (e)
+        {
+            sobre(this.id);
+        }
 
         var img = document.createElement("img");
-        img.src = procurados[i].images[0].thumb;
+        img.src = procurados[i].images[0].original;
 
         link_img.appendChild(img);
         card.appendChild(link_img);
