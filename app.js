@@ -6,7 +6,8 @@ function req_json_wanted (page)
     xhttp.open("GET", 'https://api.fbi.gov/@wanted?pageSize=50&page='+page, false);
     xhttp.send();
     var retorno = JSON.parse(xhttp.responseText);
-    const procurados = retorno.items;
+    console.log(retorno);
+    var procurados = retorno.items;
 
     //mantém somente criminosos no objeto
     for (var i in procurados)
@@ -26,14 +27,13 @@ function get_procurados() {
 
     var procurados = req_json_wanted(page);
 
-    //requisita uma nova página caso não alcance 12 criminosos na requisição
+    //requisita uma nova página caso não alcance 12 criminosos no filtro
     while( (Object.keys(procurados).length) < 12 )
     {
         page+=1;
 
-        var aux = procurados;
-        var aux2 = req_json_wanted(page);
-        procurados = aux.concat(aux2);
+        var aux = req_json_wanted(page);
+        procurados = procurados.concat(aux);
     }
 
     return procurados;
@@ -66,6 +66,7 @@ function sobre (id)
 }
 
 //main
+
 const procurados = get_procurados();
 
 console.log(procurados);
