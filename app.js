@@ -53,9 +53,9 @@ function req_json_wanted_person (uid)
     console.log(procurado);
 }
 
-function sobre (uid)
+function sobre (id)
 {
-    const procurado = req_json_wanted_person(uid);
+    const procurado = req_json_wanted_person(id);
 
     var img = document.getElementById("img-card-sobre");
     img.src = procurado.images[0].thumb;
@@ -70,6 +70,7 @@ const procurados = get_procurados();
 
 console.log(procurados);
 
+//dividir em 4 colunas
 const quantidade = (Object.keys(procurados).length) / 4;
 const limite1 = quantidade;
 const limite2 = quantidade * 2;
@@ -81,6 +82,7 @@ var col2 = document.getElementById('col2');
 var col3 = document.getElementById('col3');
 var col4 = document.getElementById('col4');
 
+//zerar colunas
 col1.innerHTML = '';
 col2.innerHTML = '';
 col3.innerHTML = '';
@@ -104,7 +106,7 @@ for (var i = 0; i < limite1; i++) {
 
         //img
         var link_img = document.createElement("a");
-        link_img.href = "./sobre.html";
+        link_img.href = './sobre.html';
         link_img.id = procurados.uid;
         link_img.onclick = function (e)
         {

@@ -7,7 +7,7 @@
 	src: url('TexasRangerBold-waen.otf');
 }
 
-#body-sobre {
+#body {
     background-color: black;
 }
 
@@ -56,12 +56,13 @@
 }
 
 #footer {
-    color: #6b4417;   
+    color: #6b4417;
 }
 
 #h1-div-titulo{
     text-align: center;
     font-size: 100px;
+    color: white;
 }
 
 #h1-div-titulo:hover {
@@ -72,4 +73,85 @@
 
 #titulo-navbar:hover{
     color: rgb(224, 84, 49);
+}
+
+#img-card-index {
+    width: 280px;
+    height: 400px;
+}
+
+#nome {
+    margin-top: 15px;
+}
+
+#card-index {
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+/*RESPONSIVO*/
+@media screen and (max-width:  384px) {
+
+    #nome-procurado {
+        margin-top: 150px;
+        margin-left: 30px;
+        text-align: center;
+        color: rgb(224, 84, 49);
+    }
+
+    #h1-nome-procurado{
+        font-size: 40px;
+    }
+
+    #jumbo-sobre {
+        background: #6b4417;
+        background-image: url('fundo.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        margin-top: 10px;
+        height: 800px;
+        width: 100%;
+    }
+
+    #footer {
+        color: #6b4417;
+        text-align: center;
+    }
+
+    #descricao {
+        margin-top: 20px;
+        font-size: 15px;
+        margin-left: -5px;
+        margin-right: -300px;
+        text-align: justify;
+    }
+
+    #img-card-sobre {
+        height: 200px;
+        width: 300px;
+    }
+
+    #procurado{
+        margin-top: 25px;
+        margin-left: -20px;
+    }
+
+    #recompensa {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: -260px;
+    }
+    
+    #h1-recompensa{
+        font-size: 60px;
+        text-align: center;
+        margin-top: 80px;
+        color: rgb(224, 84, 49);
+    }
 }
