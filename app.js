@@ -53,13 +53,13 @@ function req_json_wanted_person (uid)
     console.log(procurado);
 }
 
-function sobre (id)
+function get_procurado (id)
 {
     const procurado = req_json_wanted_person(id);
     console.log(procurado);
 
     var img = document.getElementById("img-card-sobre");
-    img.src = procurado.images[0].thumb;
+    img.src = procurado.images[0].original;
 
     document.getElementById("h1-nome-procurado").innerHTML = procurado.title;
     document.getElementById("descricao").innerHTML = procurado.description;
@@ -72,26 +72,13 @@ const procurados = get_procurados();
 
 console.log(procurados);
 
-//dividir em 4 colunas
-const quantidade = (Object.keys(procurados).length) / 4;
-const limite1 = quantidade;
-const limite2 = quantidade * 2;
-const limite3 = quantidade * 3;
-const limite4 = quantidade * 4;
+var col_card = document.getElementById('col1');
 
-var col1 = document.getElementById('col1');
-var col2 = document.getElementById('col2');
-var col3 = document.getElementById('col3');
-var col4 = document.getElementById('col4');
-
-//zerar colunas
-col1.innerHTML = '';
-col2.innerHTML = '';
-col3.innerHTML = '';
-col4.innerHTML = '';
+//zerar coluna
+col_card.innerHTML = '';
 
 //cria os cards
-for (var i = 0; i < limite1; i++) {
+for (var i in procurados) {
 
         var card = document.createElement("div");
         card.classList.add("card");
@@ -112,7 +99,7 @@ for (var i = 0; i < limite1; i++) {
         link_img.id = procurados.uid;
         link_img.onclick = function (e)
         {
-            sobre(this.id);
+            get_procurado(this.id);
         }
 
         var img = document.createElement("img");
@@ -133,145 +120,10 @@ for (var i = 0; i < limite1; i++) {
         card_body.appendChild(nome);
         card.appendChild(card_body);
 
-        col1.appendChild(card);
+        col_card.appendChild(card);
 
-}
-
-for (var i = limite1; i < limite2; i++) {
-
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.style = 'width: 18rem;';
-
-    //procurado
-    var titulo = document.createElement("h4");
-    titulo.classList.add("text-danger");
-    titulo.classList.add("text-center");
-    var texto_titulo = document.createTextNode("Procurado");
-
-    titulo.appendChild(texto_titulo);
-    card.appendChild(titulo);
-
-    //img
-    var link_img = document.createElement("a");
-    link_img.href = './sobre.html';
-    link_img.id = procurados.uid;
-    link_img.onclick = function (e)
-    {
-        sobre(this.id);
-    }
-
-    var img = document.createElement("img");
-    img.src = procurados[i].images[0].original;
-
-    link_img.appendChild(img);
-    card.appendChild(link_img);
-
-    //card body
-
-    var card_body = document.createElement("div");
-
-    var nome = document.createElement("h5");
-    nome.classList.add("text-center");
-    var texto_nome = document.createTextNode(procurados[i].title);
-
-    nome.appendChild(texto_nome);
-    card_body.appendChild(nome);
-    card.appendChild(card_body);
-
-    col2.appendChild(card);
-}
-
-for (var i = limite2; i < limite3; i++) {
-
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.style = 'width: 18rem;';
-
-    //procurado
-    var titulo = document.createElement("h4");
-    titulo.classList.add("text-danger");
-    titulo.classList.add("text-center");
-    var texto_titulo = document.createTextNode("Procurado");
-
-    titulo.appendChild(texto_titulo);
-    card.appendChild(titulo);
-
-    //img
-    var link_img = document.createElement("a");
-    link_img.href = './sobre.html';
-    link_img.id = procurados.uid;
-    link_img.onclick = function (e)
-    {
-        sobre(this.id);
-    }
-
-    var img = document.createElement("img");
-    img.src = procurados[i].images[0].original;
-
-    link_img.appendChild(img);
-    card.appendChild(link_img);
-
-    //card body
-
-    var card_body = document.createElement("div");
-
-    var nome = document.createElement("h5");
-    nome.classList.add("text-center");
-    var texto_nome = document.createTextNode(procurados[i].title);
-
-    nome.appendChild(texto_nome);
-    card_body.appendChild(nome);
-    card.appendChild(card_body);
-
-    col3.appendChild(card);
-}
-
-for (var i = limite3; i < limite4; i++) {
-
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.style = 'width: 18rem;';
-
-    //procurado
-    var titulo = document.createElement("h4");
-    titulo.classList.add("text-danger");
-    titulo.classList.add("text-center");
-    var texto_titulo = document.createTextNode("Procurado");
-
-    titulo.appendChild(texto_titulo);
-    card.appendChild(titulo);
-
-    //img
-    var link_img = document.createElement("a");
-    link_img.href = './sobre.html';
-    link_img.id = procurados.uid;
-    link_img.onclick = function (e)
-    {
-        sobre(this.id);
-    }
-
-    var img = document.createElement("img");
-    img.src = procurados[i].images[0].original;
-
-    link_img.appendChild(img);
-    card.appendChild(link_img);
-
-    //card body
-
-    var card_body = document.createElement("div");
-
-    var nome = document.createElement("h5");
-    nome.classList.add("text-center");
-    var texto_nome = document.createTextNode(procurados[i].title);
-
-    nome.appendChild(texto_nome);
-    card_body.appendChild(nome);
-    card.appendChild(card_body);
-
-    col4.appendChild(card);
 }
 
 teste = '3f5d03cb681c454f8cc324c3303a579d';
-sobre(teste);
+get_procurado(teste);
 
