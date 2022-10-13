@@ -18,6 +18,19 @@
     background-position: center;
     height: 1000px;
     width: 100%;
+    margin-top: 10px;
+}
+
+#jumbo-index{
+    background: #b8752a;
+}
+
+#titulos-cards {
+    color: rgb(224, 84, 49);
+}
+
+#nav-bar {
+    background: #b8752a;
 }
 
 #nome-procurado {
@@ -88,6 +101,34 @@
     margin-bottom: 30px;
 }
 
+.card{
+    margin-top: 15px;
+}
+
+#img-req1 {
+    width: 100%;
+    height: 900px;
+}
+
+#img-req2 {
+    margin-top: 40px;
+    width: 100%;
+    height: 900px;
+}
+
+#h2-requisicao{
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,6 +193,28 @@
         font-size: 60px;
         text-align: center;
         margin-top: 80px;
+        color: rgb(224, 84, 49);
+    }
+
+    #form-navbar{
+        align-items: right;
+    }
+    
+    #titulo-navbar{
+        display: none;
+    }
+
+    #jumbo-index{
+        margin-left: -20px;
+    }
+
+    #h1-div-titulo {
+        font-size: 60px;
+    }
+
+    #h1-div-titulo:hover {
+        text-align: center;
+        font-size: 60px;
         color: rgb(224, 84, 49);
     }
 }
