@@ -91,6 +91,7 @@
 #img-card-index {
     width: 280px;
     height: 400px;
+    cursor: pointer;
 }
 
 #nome {

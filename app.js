@@ -107,20 +107,20 @@ for (var i = 0; i < limite1; i++) {
         card.appendChild(titulo);
 
         //img
-        var link_img = document.createElement("a");
-        link_img.href = './sobre.html';
-        link_img.id = procurados.uid;
-        link_img.onclick = function (e)
-        {
-            sobre(this.id);
-        }
+        // var link_img = document.createElement("a");
+        // link_img.href = './sobre.html';
+        // link_img.id = procurados.uid;
+        // link_img.onclick = function (e)
+        // {
+        //     sobre(this.id);
+        // }
 
         var img = document.createElement("img");
         img.id = 'img-card-index'
         img.src = procurados[i].images[0].original;
 
-        link_img.appendChild(img);
-        card.appendChild(link_img);
+        //link_img.appendChild(img);
+        card.appendChild(img);
 
         //card body
 
@@ -155,20 +155,20 @@ for (var i = limite1; i < limite2; i++) {
     card.appendChild(titulo);
 
     //img
-    var link_img = document.createElement("a");
-    link_img.href = './sobre.html';
-    link_img.id = procurados.uid;
-    link_img.onclick = function (e)
-    {
-        sobre(this.id);
-    }
+    // var link_img = document.createElement("a");
+    // link_img.href = './sobre.html';
+    // link_img.id = procurados.uid;
+    // link_img.onclick = function (e)
+    // {
+    //     sobre(this.id);
+    // }
 
     var img = document.createElement("img");
     img.id = 'img-card-index'
     img.src = procurados[i].images[0].original;
 
-    link_img.appendChild(img);
-    card.appendChild(link_img);
+   // link_img.appendChild(img);
+    card.appendChild(img);
 
     //card body
 
@@ -202,20 +202,20 @@ for (var i = limite2; i < limite3; i++) {
     card.appendChild(titulo);
 
     //img
-    var link_img = document.createElement("a");
-    link_img.href = './sobre.html';
-    link_img.id = procurados.uid;
-    link_img.onclick = function (e)
-    {
-        sobre(this.id);
-    }
+    // var link_img = document.createElement("a");
+    // link_img.href = './sobre.html';
+    // link_img.id = procurados.uid;
+    // link_img.onclick = function (e)
+    // {
+    //     sobre(this.id);
+    // }
 
     var img = document.createElement("img");
     img.id = 'img-card-index'
     img.src = procurados[i].images[0].original;
 
-    link_img.appendChild(img);
-    card.appendChild(link_img);
+   // link_img.appendChild(img);
+    card.appendChild(img);
 
     //card body
 
@@ -249,20 +249,26 @@ for (var i = limite3; i < limite4; i++) {
     card.appendChild(titulo);
 
     //img
-    var link_img = document.createElement("a");
-    link_img.href = './sobre.html';
-    link_img.id = procurados.uid;
-    link_img.onclick = function (e)
-    {
-        sobre(this.id);
-    }
+   // var link_img = document.createElement("a");
+  //  link_img.href = 'sobre.html'
+   // link_img.id = procurados.uid;
+    // link_img.onclick = function (e)
+    // {
+    //     sobre(this.id);
+    // }
 
     var img = document.createElement("img");
     img.id = 'img-card-index'
     img.src = procurados[i].images[0].original;
+   // img.id = procurados.uid
+    // img.onclick = function(e)
+    // {
+    //     var ids = procurados.uid
+    //     sobre(ids)
+    // }
 
-    link_img.appendChild(img);
-    card.appendChild(link_img);
+    //link_img.appendChild(img);
+    card.appendChild(img);
 
     //card body
 
@@ -280,6 +286,12 @@ for (var i = limite3; i < limite4; i++) {
     col4.appendChild(card);
 }
 
-teste = '3f5d03cb681c454f8cc324c3303a579d';
-sobre(teste);
+
+function sobre(teste)
+{
+    var aux = teste
+   // var testeeee = "3f5d03cb681c454f8cc324c3303a579d"
+    alert('esse é o resultado: ' + aux)
+}
+
 
