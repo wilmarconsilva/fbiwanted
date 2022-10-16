@@ -1,119 +1,130 @@
-var pathPhoto = "https://image.tmdb.org/t/p/original";
-var api_key = "a1b35736a79583a39fef33408f7e1799";
+function req_json_wanted (page)
+{
+    console.log(page);
 
-function searchMovies(div, id)
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", 'https://api.fbi.gov/@wanted?pageSize=50&page='+page, false);
+    xhttp.send();
+    const retorno = JSON.parse(xhttp.responseText);
+
+    return retorno.items;
+}
+
+function get_procurados() {
+
+    var page = 1;
+
+    var aux = req_json_wanted(page);
+    var procurados = aux;
+
+    //requisita uma nova página até que a requisição não tenha mais dados
+    while (Object.keys(aux).length != 0)
+    {
+        page+=1;
+
+        //mantém somente criminosos no objeto
+        for (var i in procurados)
+        {
+            if(procurados[i].reward_text == null || procurados[i].sex == null)
+            {
+                procurados.splice(i);
+            }
+        }
+
+        aux = req_json_wanted(page);
+        procurados = procurados.concat(aux);
+     }
+
+     console.log(procurados);
+     return procurados;
+
+ }
+
+function req_json_wanted_person (id)
 {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", 'https://api.themoviedb.org/3/discover/movie?with_genres='+id+'&language=pt-BR&api_key=a1b35736a79583a39fef33408f7e1799', false);
+    xhttp.open("GET", 'https://api.fbi.gov/@wanted-person/'+id, false);
     xhttp.send();
-    var retorno = JSON.parse(xhttp.responseText);
-    var movies = retorno.results;
+    const procurado = JSON.parse(xhttp.responseText);
 
-    //console.log(movies);
+    return procurado;
+}
 
-    var divPai = document.getElementById(div);
-    divPai.innerHTML = '';
-    
-    for (var i in movies)
-    {
-        var a = document.createElement("a");
-        a.href = "#topo";
-        a.id = movies[i].id;
-        a.onclick = function (e)
+function sobre (id)
+{
+    const procurado = req_json_wanted_person(id);
+
+    var img = document.getElementById("img-card-sobre");
+    img.src = procurado.images[0].thumb;
+
+    document.getElementById("h1-nome-procurado").innerHTML = procurado.title;
+    document.getElementById("descricao").innerHTML = procurado.description;
+    document.getElementById("h1-recompensa").innerHTML = get_reward(procurado);
+}
+
+function get_reward(procurado)
+{
+    const result = 'U$ ' + procurado.reward_text.replace(/([^\d])+/gim, '');
+
+    return result;
+}
+
+
+
+//main
+
+const procurados = get_procurados();
+
+var row_cards = document.getElementById("row-card");
+
+//zerar row
+row_cards.innerHTML = '';
+
+//cria os cards
+for (var i in procurados) {
+
+        var card = document.createElement("div");
+        card.classList.add("card");
+        card.style = 'width: 18rem;';
+        card.id = 'card-index';
+
+        //procurado
+        var titulo = document.createElement("h4");
+        titulo.classList.add("text-danger");
+        titulo.classList.add("text-center");
+        var texto_titulo = document.createTextNode("procurado");
+
+        titulo.appendChild(texto_titulo);
+        card.appendChild(titulo);
+
+        //img
+        var link_img = document.createElement("a");
+        link_img.href = '#jumbo-sobre';
+        link_img.id = procurados[i].uid;
+        link_img.onclick = function (e)
         {
-            searchDetails(this.id);
+            sobre(this.id);
         }
 
         var img = document.createElement("img");
-        img.src = "https://image.tmdb.org/t/p/w300" + movies[i].poster_path;
+        img.id = 'img-card-index';
+        img.src = procurados[i].images[0].original;
 
-        a.appendChild(img);
-        divPai.appendChild(a);
-    }
+        link_img.appendChild(img);
+        card.appendChild(link_img);
 
-}
+        //card body
 
-function searchDetails (id)
-{
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", 'https://api.themoviedb.org/3/movie/'+id+"?&language=pt-BR&api_key=a1b35736a79583a39fef33408f7e1799", false);
-    xhttp.send();
+        var card_body = document.createElement("div");
 
-    var retorno = JSON.parse(xhttp.responseText);
+        var nome = document.createElement("h5");
+        nome.classList.add("text-center");
+        var texto_nome = document.createTextNode(procurados[i].title);
 
-    console.log(retorno);
+        nome.appendChild(texto_nome);
+        card_body.appendChild(nome);
+        card.appendChild(card_body);
 
-    var title = document.getElementById("movie-title");
-    title.innerHTML = retorno.title;
-
-    var date = document.getElementById("movie-year");
-    date.innerHTML = retorno.release_date.substring(0, 4);
-
-    var resume = document.getElementById("resume");
-    resume.innerHTML = retorno.overview;
-
-    var genres = retorno.genres;
-    document.getElementById("genres").innerHTML = " ";
-
-    for (var i in genres)
-    {
-        if (i == 2)
-        {
-            console.log(i);
-            document.getElementById("genres").innerHTML += genres[i].name;
-        }
-
-        else
-        {
-            document.getElementById("genres").innerHTML += genres[i].name + "; ";
-        }
-
-    }
-
-    var photo = document.getElementById("background-image");
-    photo.style.backgroundImage = "url(" + pathPhoto + retorno.backdrop_path + ")";
-
-    var points = document.getElementById("div-points");
-    points.innerHTML = Math.round(retorno.vote_average) + " Points";
-
-}
-
-function searchMoviesByIn()
-{
-    var movieName = document.getElementById("movie-name").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://api.themoviedb.org/3/search/movie?query="+movieName+"&language=pt-BR&api_key=a1b35736a79583a39fef33408f7e1799", false);
-    xhttp.send();
-    var retorno = JSON.parse(xhttp.responseText);
-    var movies = retorno.results;
-
-    console.log(movies);
-
-    var divPai = document.getElementById("movies-results");
-
-    var divSections = document.getElementById("movies-sections");
-    divSections.innerHTML = '';
-
-    var h1 = document.getElementById("results-title");
-    h1.innerHTML = "Resultados encontrados para: " + movieName;
-
-    for(var i in movies)
-    {
-        var a = document.createElement("a");
-        a.href = "#topo";
-        a.id = movies[i].id;
-        a.onclick = function (e)
-        {
-            searchDetails (this.id);
-        }
-
-        var img = document.createElement("img");
-        img.src = "https://image.tmdb.org/t/p/w300" + movies[i].poster_path;
-
-        a.appendChild(img);
-        divPai.appendChild(a);
-
-    }
+        row_cards.appendChild(card);
 
 }
