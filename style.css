@@ -12,12 +12,26 @@
 }
 
 #jumbo-sobre {
+    display: none;
     background: #6b4417;
     background-image: url('fundo.jpg');
     background-repeat: no-repeat;
     background-position: center;
     height: 1000px;
     width: 100%;
+    margin-top: 10px;
+}
+
+#jumbo-index{
+    background: #b8752a;
+}
+
+#titulos-cards {
+    color: rgb(224, 84, 49);
+}
+
+#nav-bar {
+    background: #b8752a;
 }
 
 #nome-procurado {
@@ -76,17 +90,59 @@
 }
 
 #img-card-index {
-    width: 280px;
+    width: 260px;
     height: 400px;
+    cursor: pointer;
 }
 
 #nome {
     margin-top: 15px;
 }
 
-#card-index {
+.card{
     margin-bottom: 30px;
+    margin-right: 15px;
 }
+
+#img-req1 {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 40px;
+}
+
+#img-req2 {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 40px;
+}
+
+#img-ret1 {
+    width: 100%;
+    height: 900px;
+    width: 1000px;
+    margin-bottom: 40px;
+}
+
+#img-ret2 {
+    width: 100%;
+    height: 900px;
+    width: 1000px;
+    margin-bottom: 40px;
+}
+
+
+#h2-requisicao{
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,6 +208,28 @@
         font-size: 60px;
         text-align: center;
         margin-top: 80px;
+        color: rgb(224, 84, 49);
+    }
+
+    #form-navbar{
+        align-items: right;
+    }
+    
+    #titulo-navbar{
+        display: none;
+    }
+
+    #jumbo-index{
+        margin-left: -20px;
+    }
+
+    #h1-div-titulo {
+        font-size: 60px;
+    }
+
+    #h1-div-titulo:hover {
+        text-align: center;
+        font-size: 60px;
         color: rgb(224, 84, 49);
     }
 }
