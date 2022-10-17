@@ -1,126 +1,109 @@
 function req_json_wanted (page)
 {
-    console.log(page);
-
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", 'https://api.fbi.gov/@wanted?pageSize=50&page='+page, false);
     xhttp.send();
-    var retorno = JSON.parse(xhttp.responseText);
-    console.log(retorno);
-    var procurados = retorno.items;
+    const retorno = JSON.parse(xhttp.responseText);
 
-    //mantém somente criminosos no objeto
-     for (var i in procurados)
-     {
-         if(procurados[i].reward_text == null || procurados[i].sex == null)
-         {
-             procurados.splice(i);
-         }
-     }
-
-    return procurados;
+    return retorno.items;
 }
 
 function get_procurados() {
 
     var page = 1;
 
-    var procurados = req_json_wanted(page);
+    var aux = req_json_wanted(page);
+    var procurados = aux;
 
-    //requisita uma nova página caso não alcance 12 criminosos no filtro
-    while( (Object.keys(procurados).length) < 12 )
+    //requisita uma nova página até que a requisição não tenha mais dados
+    while (Object.keys(aux).length != 0)
     {
         page+=1;
 
-        var aux = req_json_wanted(page);
+        //mantém somente criminosos no objeto
+        for (var i in procurados)
+        {
+            if(procurados[i].reward_text == null || procurados[i].sex == null)
+            {
+                procurados.splice(i);
+            }
+        }
+
+        aux = req_json_wanted(page);
         procurados = procurados.concat(aux);
-    }
+     }
 
-    return procurados;
+     return procurados;
 
-}
-
-function req_json_wanted_person (uid)
-{
-    console.log(uid);
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", 'https://api.fbi.gov/@wanted-person/'+uid, false);
-    xhttp.send();
-    var retorno = JSON.parse(xhttp.responseText);
-    const procurado = retorno.items;
-
-    console.log(procurado);
-}
+ }
 
 function sobre (id)
-{
-    const procurado = req_json_wanted_person(id);
-    console.log(procurado);
+{  
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", 'https://api.fbi.gov/@wanted-person/'+id, false);
+    xhttp.send();
+    const procurado = JSON.parse(xhttp.responseText);
 
     var img = document.getElementById("img-card-sobre");
     img.src = procurado.images[0].thumb;
 
     document.getElementById("h1-nome-procurado").innerHTML = procurado.title;
-    document.getElementById("descricao").innerHTML = procurado.description;
-    document.getElementById("h1-recompensa").innerHTML = procurado.reward_text;
+    document.getElementById("descricao").innerHTML = procurado.description
+    document.getElementById("h1-recompensa").innerHTML = get_reward(procurado);
 }
+
+function get_reward(procurado)
+{
+    const result = 'U$ ' + procurado.reward_text.replace(/([^\d])+/gim, '');
+
+    return result;
+}
+
+
 
 //main
 
 const procurados = get_procurados();
 
-console.log(procurados);
+var row_cards = document.getElementById("row-card");
 
-//dividir em 4 colunas
-const quantidade = (Object.keys(procurados).length) / 4;
-const limite1 = quantidade;
-const limite2 = quantidade * 2;
-const limite3 = quantidade * 3;
-const limite4 = quantidade * 4;
-
-var col1 = document.getElementById('col1');
-var col2 = document.getElementById('col2');
-var col3 = document.getElementById('col3');
-var col4 = document.getElementById('col4');
-
-//zerar colunas
-col1.innerHTML = '';
-col2.innerHTML = '';
-col3.innerHTML = '';
-col4.innerHTML = '';
+//zerar row
+row_cards.innerHTML = '';
 
 //cria os cards
-for (var i = 0; i < limite1; i++) {
+for (var i in procurados) {
 
         var card = document.createElement("div");
         card.classList.add("card");
         card.style = 'width: 18rem;';
+        card.id = 'card-index';
 
         //procurado
         var titulo = document.createElement("h4");
+        titulo.classList.add("text-danger");
         titulo.classList.add("text-center");
-        titulo.id = 'titulos-cards'
-        var texto_titulo = document.createTextNode("Procurado");
+        var texto_titulo = document.createTextNode("procurado");
 
         titulo.appendChild(texto_titulo);
         card.appendChild(titulo);
 
         //img
-        // var link_img = document.createElement("a");
-        // link_img.href = './sobre.html';
-        // link_img.id = procurados.uid;
-        // link_img.onclick = function (e)
-        // {
-        //     sobre(this.id);
-        // }
+        var link_img = document.createElement("a");
+        link_img.href = '#jumbo-sobre';
+        link_img.id = procurados[i].uid;
+        link_img.onclick = function (e)
+        {
+            document.getElementById('jumbo-sobre').style = ''
+            sobre(this.id)
+        }
 
         var img = document.createElement("img");
-        img.id = 'img-card-index'
+        img.id = 'img-card-index';
         img.src = procurados[i].images[0].original;
+        img.alt = 'IMAGEM INDISPONÍVEL'
 
-        //link_img.appendChild(img);
-        card.appendChild(img);
+        link_img.appendChild(img);
+        card.appendChild(link_img);
 
         //card body
 
@@ -135,163 +118,6 @@ for (var i = 0; i < limite1; i++) {
         card_body.appendChild(nome);
         card.appendChild(card_body);
 
-        col1.appendChild(card);
+        row_cards.appendChild(card);
 
 }
-
-for (var i = limite1; i < limite2; i++) {
-
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.style = 'width: 18rem;';
-
-    //procurado
-    var titulo = document.createElement("h4");
-    titulo.classList.add("text-center");
-    titulo.id = 'titulos-cards'
-    var texto_titulo = document.createTextNode("Procurado");
-
-    titulo.appendChild(texto_titulo);
-    card.appendChild(titulo);
-
-    //img
-    // var link_img = document.createElement("a");
-    // link_img.href = './sobre.html';
-    // link_img.id = procurados.uid;
-    // link_img.onclick = function (e)
-    // {
-    //     sobre(this.id);
-    // }
-
-    var img = document.createElement("img");
-    img.id = 'img-card-index'
-    img.src = procurados[i].images[0].original;
-
-   // link_img.appendChild(img);
-    card.appendChild(img);
-
-    //card body
-
-    var card_body = document.createElement("div");
-
-    var nome = document.createElement("h5");
-    nome.classList.add("text-center");
-    nome.id = 'nome'
-    var texto_nome = document.createTextNode(procurados[i].title);
-
-    nome.appendChild(texto_nome);
-    card_body.appendChild(nome);
-    card.appendChild(card_body);
-
-    col2.appendChild(card);
-}
-
-for (var i = limite2; i < limite3; i++) {
-
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.style = 'width: 18rem;';
-
-    //procurado
-    var titulo = document.createElement("h4");
-    titulo.classList.add("text-center");
-    titulo.id = 'titulos-cards'
-    var texto_titulo = document.createTextNode("Procurado");
-
-    titulo.appendChild(texto_titulo);
-    card.appendChild(titulo);
-
-    //img
-    // var link_img = document.createElement("a");
-    // link_img.href = './sobre.html';
-    // link_img.id = procurados.uid;
-    // link_img.onclick = function (e)
-    // {
-    //     sobre(this.id);
-    // }
-
-    var img = document.createElement("img");
-    img.id = 'img-card-index'
-    img.src = procurados[i].images[0].original;
-
-   // link_img.appendChild(img);
-    card.appendChild(img);
-
-    //card body
-
-    var card_body = document.createElement("div");
-
-    var nome = document.createElement("h5");
-    nome.classList.add("text-center");
-    nome.id = 'nome'
-    var texto_nome = document.createTextNode(procurados[i].title);
-
-    nome.appendChild(texto_nome);
-    card_body.appendChild(nome);
-    card.appendChild(card_body);
-
-    col3.appendChild(card);
-}
-
-for (var i = limite3; i < limite4; i++) {
-
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.style = 'width: 18rem;';
-
-    //procurado
-    var titulo = document.createElement("h4");
-    titulo.classList.add("text-center");
-    titulo.id = 'titulos-cards'
-    var texto_titulo = document.createTextNode("Procurado");
-
-    titulo.appendChild(texto_titulo);
-    card.appendChild(titulo);
-
-    //img
-   // var link_img = document.createElement("a");
-  //  link_img.href = 'sobre.html'
-   // link_img.id = procurados.uid;
-    // link_img.onclick = function (e)
-    // {
-    //     sobre(this.id);
-    // }
-
-    var img = document.createElement("img");
-    img.id = 'img-card-index'
-    img.src = procurados[i].images[0].original;
-   // img.id = procurados.uid
-    // img.onclick = function(e)
-    // {
-    //     var ids = procurados.uid
-    //     sobre(ids)
-    // }
-
-    //link_img.appendChild(img);
-    card.appendChild(img);
-
-    //card body
-
-    var card_body = document.createElement("div");
-
-    var nome = document.createElement("h5");
-    nome.classList.add("text-center");
-    nome.id = 'nome'
-    var texto_nome = document.createTextNode(procurados[i].title);
-
-    nome.appendChild(texto_nome);
-    card_body.appendChild(nome);
-    card.appendChild(card_body);
-
-    col4.appendChild(card);
-}
-
-
-function sobre(teste)
-{
-    var aux = teste
-   // var testeeee = "3f5d03cb681c454f8cc324c3303a579d"
-    alert('esse é o resultado: ' + aux)
-}
-
-
