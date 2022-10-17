@@ -1,7 +1,5 @@
 function req_json_wanted (page)
 {
-    console.log(page);
-
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", 'https://api.fbi.gov/@wanted?pageSize=50&page='+page, false);
     xhttp.send();
@@ -35,30 +33,22 @@ function get_procurados() {
         procurados = procurados.concat(aux);
      }
 
-     console.log(procurados);
      return procurados;
 
  }
 
-function req_json_wanted_person (id)
-{
+function sobre (id)
+{  
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", 'https://api.fbi.gov/@wanted-person/'+id, false);
     xhttp.send();
     const procurado = JSON.parse(xhttp.responseText);
 
-    return procurado;
-}
-
-function sobre (id)
-{
-    const procurado = req_json_wanted_person(id);
-
     var img = document.getElementById("img-card-sobre");
     img.src = procurado.images[0].thumb;
 
     document.getElementById("h1-nome-procurado").innerHTML = procurado.title;
-    document.getElementById("descricao").innerHTML = procurado.description;
+    document.getElementById("descricao").innerHTML = procurado.description
     document.getElementById("h1-recompensa").innerHTML = get_reward(procurado);
 }
 
@@ -103,13 +93,14 @@ for (var i in procurados) {
         link_img.id = procurados[i].uid;
         link_img.onclick = function (e)
         {
-            sobre(this.id);
-            document.getElementById("jumbo-sobre").style.display = 'block';
+            document.getElementById('jumbo-sobre').style = ''
+            sobre(this.id)
         }
 
         var img = document.createElement("img");
         img.id = 'img-card-index';
         img.src = procurados[i].images[0].original;
+        img.alt = 'IMAGEM INDISPONÍVEL'
 
         link_img.appendChild(img);
         card.appendChild(link_img);
@@ -120,6 +111,7 @@ for (var i in procurados) {
 
         var nome = document.createElement("h5");
         nome.classList.add("text-center");
+        nome.id = 'nome'
         var texto_nome = document.createTextNode(procurados[i].title);
 
         nome.appendChild(texto_nome);

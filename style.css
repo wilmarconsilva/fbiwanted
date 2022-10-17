@@ -12,13 +12,11 @@
 }
 
 #jumbo-sobre {
-    display: none;
-    background: #6b4417;
+    background: #b8752a;
     background-image: url('fundo.jpg');
     background-repeat: no-repeat;
     background-position: center;
     height: 1000px;
-    width: 100%;
     margin-top: 10px;
 }
 
@@ -41,7 +39,8 @@
 }
 
 #h1-nome-procurado{
-    font-size: 60px;
+    margin-left: -340px;
+    font-size: 40px;
 }
 
 #procurado{
@@ -49,6 +48,7 @@
 }
 
 #img-card-sobre {
+    margin-top: 10px;
     height: 350px;
     width: 400px;
 }
@@ -85,6 +85,10 @@
     color: rgb(224, 84, 49);
 }
 
+#titulo-navbar{
+    color: white;
+}
+
 #titulo-navbar:hover{
     color: rgb(224, 84, 49);
 }
@@ -92,7 +96,7 @@
 #img-card-index {
     width: 260px;
     height: 400px;
-    cursor: pointer;
+    color:rgb(0, 0, 0);
 }
 
 #nome {
@@ -102,6 +106,10 @@
 .card{
     margin-bottom: 30px;
     margin-right: 15px;
+}
+
+#card-index{
+    background: #965f1f;
 }
 
 #img-req1 {
@@ -119,24 +127,27 @@
 #img-ret1 {
     width: 100%;
     height: 900px;
-    width: 1000px;
     margin-bottom: 40px;
 }
 
 #img-ret2 {
     width: 100%;
     height: 900px;
-    width: 1000px;
     margin-bottom: 40px;
 }
 
+#titulo-navbar{
+    margin-left: 1000px;
+    font-size: 30px;
+}
 
 #h2-requisicao{
     margin-top: 30px;
 }
 
-
-
+#texto-api{
+    font-size: 25px;
+}
 
 
 
@@ -151,17 +162,21 @@
 
 
 /*RESPONSIVO*/
-@media screen and (max-width:  384px) {
+@media screen and (max-width:  850px) {
 
     #nome-procurado {
         margin-top: 150px;
-        margin-left: 30px;
+        margin-left: 300px;
         text-align: center;
         color: rgb(224, 84, 49);
     }
 
     #h1-nome-procurado{
         font-size: 40px;
+    }
+
+    #body{
+        align-items: center;
     }
 
     #jumbo-sobre {
@@ -172,6 +187,14 @@
         background-size: 100% 100%;
         margin-top: 10px;
         height: 800px;
+        width: 100%;
+    }
+
+    #jumbo-index{
+        background: #b8752a;
+        background-position: center;
+        background-size: 100% 100%;
+        margin-top: 10px;
         width: 100%;
     }
 
@@ -189,7 +212,7 @@
     }
 
     #img-card-sobre {
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
@@ -207,7 +230,7 @@
     #h1-recompensa{
         font-size: 60px;
         text-align: center;
-        margin-top: 80px;
+        margin-top: 30px;
         color: rgb(224, 84, 49);
     }
 
@@ -216,7 +239,7 @@
     }
     
     #titulo-navbar{
-        display: none;
+        margin-left: 100px;
     }
 
     #jumbo-index{
@@ -231,5 +254,29 @@
         text-align: center;
         font-size: 60px;
         color: rgb(224, 84, 49);
+    }
+
+    #img-req1 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+    
+    #img-req2 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+
+    #img-ret1 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+    
+    #img-ret2 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
     }
 }

@@ -9,13 +9,11 @@
   </head>
   <body id="body">
     <!--Inicio navbar-->
-    <nav class="navbar bg-light">
+    <nav id="nav-bar" class="navbar">
         
-        <div class="container-fluid">
-          <a id="titulo-navbar" href="index.html" class="navbar-brand">Most Wanted FBI</a>
+        <div id="form-navbar" class="container-fluid">
+          <a id="titulo-navbar" href="index.html" class="navbar-brand text-center">Most Wanted FBI</a>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Digte um nome" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
       </nav>
@@ -28,115 +26,93 @@
 
       <!--titulo-->
       <div id="div-titulo">
-        <h1 id="h1-div-titulo">OS CRIMINOSOS MAIS PROCURADOS DO MUNDO</h1>
+        <h1 id="h1-div-titulo">AS PESSOAS MAIS PROCURADOS DO MUNDO</h1>
       </div>
       <!--fim titulo-->
 
-        <!--Inicio jumbo-->
-        <div class="p-5 mb-4 bg-light rounded-4">
-
-            <!--inicio row 1-->
-            <div class="row">
-                <!--inicio col 1-->
-              <div id="col1" class="col-lg-3 col-sm-12">
-                <div class="card" style="width: 18rem;">
-                  <h4 class="text-center text-danger">Procurado</h2>
-                  <img id="img-card-index" src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 id="nome" class="card-title text-center">Card title</h5>
-                  </div>
+      <!--Inicio jumbo-->
+      <div id="jumbo-index" class="p-5 mb-4 rounded-4">
+          <!--inicio row 1-->
+          <div id='row-card' class="row">
+              <div class="card" style="width: 18rem;">
+                <h4 class="text-center">Procurado</h2>
+                <img id="img-card-index" src="" class="card-img-top" alt="">
+                <div class="card-body">
+                  <h5 id="nome" class="card-title text-center">Card title</h5>
                 </div>
               </div>
-                <!--fim col 1-->
-                
-                <!--inicio col 2-->
-                <div id='col2' class="col-lg-3 col-sm-12">
-                  <div class="card" style="width: 18rem;">
-                    <h4 class="text-center text-danger">Procurado</h2>
-                    <img id="img-card-index" src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 id="nome" class="card-title text-center">Card title</h5>
-                    </div>
-                  </div>
-                </div>
-                <!--fim col 2-->
+          </div>
+          <!--fim row 1-->
+      </div>
+      <!--Fim jumbo-->
 
-                <!--inicio col 3-->
-                <div id='col3' class="col-lg-3 col-sm-12">
-                    <div class="card" style="width: 18rem;">
-                        <h4 class="text-center text-danger">Procurado</h2>
-                        <img id="img-card-index" src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 id="nome" class="card-title text-center">Card title</h5>
-                        </div>
-                      </div>
-                </div>
-                <!--inicio col 3-->
+      <!--jumbo 2-->
+      <div id="jumbo-sobre" style="display: none;" class="p-5 mb-4 rounded-4">
+          <!--nome-procurado-->
+          <div id="nome-procurado">
+            <h1 id="h1-nome-procurado" class="text-center">NOME MELIANTE</h1>
+          </div>
+          <!--fim nome procurado-->
 
-                <!--inicio col 4-->
-                <div id='col4' class="col-lg-3 col-sm-12">
-                  <div class="card" style="width: 18rem;">
-                      <h4 class="text-center text-danger">Procurado</h2>
-                      <img id="img-card-index" src="..." class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 id="nome" class="card-title text-center">Card title</h5>
-                      </div>
-                    </div>
-              </div>
-              <!--inicio col 4-->
+          <!--div procurado-->
+          <div id="procurado">
+
+            <!--card-->
+            <div class="col-lg-4 col-sm-12">
+              <img id="img-card-sobre" src="" class="card-img-top" alt="...">
             </div>
-            <!--fim row 1-->
+            <!--fim-card-->
 
-        </div>
-        <!--Fim jumbo-->    
-
-        <!--Inicio jumbo 2-->
-        <div class="p-5 mb-4 bg-light rounded-4">
-
-            <h1 class="text-center">Sobre a FBI Wanted API</h1>
-            <p class="text-center">Esta API fornece os dados dos criminosos procurados pela Federal Bureau of Investigation (FBI).</p>
-
-            <div class="row">
-
-                <!--inicio col 1-->
-                <div class="col-lg-6 col-sm-12">
-                    <h2 class="text-center">Requisição</h2>
-                    <h4>Requisição de casos</h3>
-                    <img src="./Req1.png" alt="Requisição casos FBI">
-                    <br><br>
-                    <h4>Requisição de caso</h3>
-                    <img src="./Req2.png" alt="Requisição caso FBI">
-                </div>
-                <!--fim col 1-->
-
-                <!--inicio col 2-->
-                <div class="col-lg-6 col-sm-12">
-                    <h2 class="text-center">Retorno</h2>
-                    <h4>Requisição de casos</h3>
-                    <img src="" alt="Retorno casos FBI">
-                    <br><br>
-                    <h4>Requisição de caso</h3>
-                    <img src="" alt="Retorno caso FBI">
-                </div>
-                <!--fim col 2-->
-
-                <a style="text-align: center;" href="https://www.fbi.gov/wanted/api">Acesse a API</a>
+            <!--descricao-->
+            <div id="descricao" class="text-justify">
+            ?
             </div>
+            <!--fim descricao-->
+
+            <!--recompensa-->
+            <div id="recompensa">
+              <h1 id="h1-recompensa">U$ ?</h1>
+            </div>
+            <!--fim recompensa-->
+          </div>
+          <!--fim div procurado-->
+      </div>       
+      <!--fim jumbo 2-->
+
+      <!--Inicio jumbo 3-->
+      <div id="jumbo-index" class="p-5 mb-4 rounded-4">
+
+        <h1 class="text-center">Sobre a FBI Wanted API</h1>
+        <p id="texto-api" class="text-center">Esta API fornece os dados dos criminosos procurados pela Federal Bureau of Investigation (FBI).</p>
+        <p class="text-center"><a target="_blank" id="texto-api" href="https://www.fbi.gov/wanted/api">Clique aqui para acessar a API</a></p>
+
+        <!--inicio req-->
+        <div class="row">
+          <h2 id="h2-requisicao" class="text-center">Requisição</h2>
+          <h4>Requisição de casos</h4>
+          <img id="img-req1" src="Req1.png">
+          <h4>Requisição de caso</h4>
+          <img id="img-req2" src="Req2.png">
         </div>
-        <!--Fim jumbo 2-->
+        <!--fim requisição-->
+
+        <!--inicio retorno-->
+          <h2 class="text-center">Retorno</h2>
+          <h4>Retorno de caso</h4>
+          <img id="img-ret1" src="Ret.png">
+          <h4>Retorno de casos</h4>
+          <img id="img-ret2" src="Ret2.png">
+        <!--fim retorno-->
 
 
-
-
-
-
-
+      </div>
+      <!--Fim jumbo 3-->
 
     </div>
     <!--Fim container-->
 
-    <footer>
-      <p class="text-center">Direitos reservados aos desenvolvedores - <a href="#">Wilson</a> | <a href="#">Jonathan</a> </p>
+    <footer id="footer">
+      <p class="text-center">Direitos reservados - <a href="#">Wilson</a> | <a href="#">Jonathan</a> </p>
    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
