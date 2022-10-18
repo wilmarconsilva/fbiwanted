@@ -271,4 +271,13 @@
         height: 200px;
         margin-bottom: 40px;
     }
+}    #jumbo-index{
+    margin-left: -20px;
+}
+
+@media screen and (max-width:  850px) {
+    #jumbo-index{
+        margin: 0;
+    }
+
 }
