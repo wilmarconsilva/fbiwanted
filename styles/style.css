@@ -1,0 +1,260 @@
+*{
+    font-family: 'fonte';
+}
+
+@font-face{
+	font-family: "fonte";
+	src: url('TexasRangerBold-waen.otf');
+}
+
+#body {
+    background-color: black;
+}
+
+#jumbo-sobre {
+    background: #b8752a;
+    background-image: url('fundo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 1000px;
+    margin-top: 10px;
+}
+
+#jumbo-index{
+    background: #b8752a;
+}
+
+#titulos-cards {
+    color: rgb(224, 84, 49);
+}
+
+#nav-bar {
+    background: #b8752a;
+}
+
+#nome-procurado {
+    margin-top: 240px;
+    margin-left: 350px;
+    color: rgb(224, 84, 49);
+}
+
+#h1-nome-procurado{
+    margin-left: -340px;
+    font-size: 40px;
+}
+
+#procurado{
+    margin: auto 400px;
+}
+
+#img-card-sobre {
+    margin-top: 10px;
+    height: 350px;
+    width: 400px;
+}
+
+#descricao {
+    margin-top: 15px;
+    text-align: justify;
+}
+
+#recompensa {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#h1-recompensa{
+    font-size: 80px;
+    text-align: center;
+    color: rgb(224, 84, 49);
+}
+
+#footer {
+    color: #6b4417;
+}
+
+#h1-div-titulo{
+    text-align: center;
+    font-size: 100px;
+    color: white;
+}
+
+#h1-div-titulo:hover {
+    text-align: center;
+    font-size: 100px;
+    color: rgb(224, 84, 49);
+}
+
+#titulo-navbar{
+    color: white;
+    font-size: 30px;
+}
+
+#titulo-navbar:hover{
+    color: rgb(224, 84, 49);
+}
+
+#img-card-index {
+    width: 260px;
+    height: 400px;
+    color:rgb(0, 0, 0);
+}
+
+#nome {
+    margin-top: 15px;
+}
+
+.card{
+    margin-bottom: 30px;
+    margin-right: 15px;
+}
+
+#card-index{
+    background: #965f1f;
+}
+
+#img-req1 {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 40px;
+}
+
+#img-req2 {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 40px;
+}
+
+#img-ret1 {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 40px;
+}
+
+#img-ret2 {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 40px;
+}
+
+#h2-requisicao{
+    margin-top: 30px;
+}
+
+#texto-api{
+    font-size: 25px;
+}
+
+
+/*RESPONSIVO*/
+@media screen and (max-width:  850px) {
+
+    #nome-procurado {
+        margin-top: 150px;
+        margin-left: 300px;
+        text-align: center;
+        color: rgb(224, 84, 49);
+    }
+
+    #h1-nome-procurado{
+        font-size: 40px;
+    }
+
+    #body{
+        align-items: center;
+    }
+
+    #jumbo-sobre {
+        background: #6b4417;
+        background-image: url('fundo.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        margin-top: 10px;
+        height: 800px;
+        width: 100%;
+    }
+
+    #jumbo-index{
+        margin: 0;
+        background: #b8752a;
+        background-position: center;
+        background-size: 100% 100%;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    #footer {
+        color: #6b4417;
+        text-align: center;
+    }
+
+    #descricao {
+        margin-top: 20px;
+        font-size: 15px;
+        margin-left: -5px;
+        margin-right: -300px;
+        text-align: justify;
+    }
+
+    #img-card-sobre {
+        height: 300px;
+        width: 300px;
+    }
+
+    #procurado{
+        margin-top: 25px;
+        margin-left: -20px;
+    }
+
+    #recompensa {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: -260px;
+    }
+    
+    #h1-recompensa{
+        font-size: 60px;
+        text-align: center;
+        margin-top: 30px;
+        color: rgb(224, 84, 49);
+    }
+
+    #form-navbar{
+        align-items: right;
+    }
+
+    #h1-div-titulo {
+        font-size: 60px;
+    }
+
+    #h1-div-titulo:hover {
+        text-align: center;
+        font-size: 60px;
+        color: rgb(224, 84, 49);
+    }
+
+    #img-req1 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+    
+    #img-req2 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+
+    #img-ret1 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+    
+    #img-ret2 {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+}
